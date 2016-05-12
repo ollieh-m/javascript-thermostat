@@ -25,6 +25,14 @@ $(document).ready(function() {
 		return url;
 	};
 
+	function updateServer(){
+		$.post(('http://localhost:4567/temperature/' + thermostat.temperature))
+	}
+
+	$.get('http://localhost:4567/temperature', function(data){
+		thermostat.temperature = Number(data)
+	});
+
 	updateTemp();
 	updatePower();
 	updateDisplay();
@@ -33,18 +41,21 @@ $(document).ready(function() {
 		thermostat.upButton();
 		updateTemp();
 		updateDisplay();
+		updateServer();
 	});
 
 	$("#temperature-down").click(function() {
 		thermostat.downButton();
 		updateTemp();
 		updateDisplay();
+		updateServer();
 	});
 
 	$("#temperature-reset").click(function() {
 		thermostat.resetButton();
 		updateTemp();
 		updateDisplay();
+		updateServer();
 	});
 
 	$("#powersaving-button").click(function() {
