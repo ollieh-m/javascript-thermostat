@@ -3,7 +3,7 @@ var thermostat = new Thermostat();
 $(document).ready(function() {
 
 	function updateTemp() {
-		$("h1#temperature").text("The current temperature is " + thermostat.temperature + " degrees.");
+		$("h1#temperature").text(thermostat.temperature + " C");
 	};
 
 	function updatePower() {
@@ -16,6 +16,13 @@ $(document).ready(function() {
 
 	function updateDisplay() {
 		$("#display").attr('class', thermostat.displayStatus());
+	};
+
+	function weatherURL() {
+		var city = $('#city').val();
+		var country = $('#country').val();
+		var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + country + '&appid=05a7a6a98e00af8041cff6d5035a03ae&units=metric'
+		return url;
 	};
 
 	updateTemp();
@@ -47,11 +54,8 @@ $(document).ready(function() {
 
 	$("#ajaxform").submit(function(event){
 		event.preventDefault();
-		var city = $('#city').val();
-		var country = $('#country').val();
-		var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + country + '&appid=05a7a6a98e00af8041cff6d5035a03ae&units=metric'
-		$.get(url, function(data){
-			$('#jibberish').text(data.main.temp);
+		$.get(weatherURL(), function(data){
+			$('#weather-update').text("The temperature in " + data.name + " is " + data.main.temp + " C");
 		});
 	});
 });

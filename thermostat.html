@@ -4,30 +4,38 @@
 <head>
 	<title>Thermostat</title>
 	<link type='text/css' rel='stylesheet' href='main.css'>
+	<link href='https://fonts.googleapis.com/css?family=Merriweather:400,700,900,900italic' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-	<section id='display'>
-		<h1 id='temperature'></h1>
-		<h1 id='powersave'></h1>
-	</section>
-	<section class='controls'>
-		<button id='temperature-up'>UP</button>
-		<button id='temperature-down'>DOWN</buton>
-		<button id='powersaving-button'>SWITCH POWERSAVE</button>
-		<button id='temperature-reset'>RESET</button>
-	</section>
-  <section class='weather'>
-    <form id='ajaxform'>
-      <p>City: </p><input type='text' id='city'><br/>
-      <p>Country: </p><input type='text' id='country'><br/>
-      <input type='submit' value='Submit'>
-    </form>
-    <p id='jibberish'></p>
-  </section>
-	<script type='text/javascript' src='src/Thermostat.js'></script>
-	<script src='jquery.js'></script>
-	<script src='src/ThermostatJquery.js'></script>
+	<div class='container'>
+		<section class='row'>
+			<div id='display'>
+				<h1 id='temperature'></h1>
+				<h1 id='powersave'></h1>
+			</div>
+		</section>
+		<section class='controls row'>
+			<button id='temperature-up'>UP</button>
+			<button id='temperature-down'>DOWN</buton>
+			<button id='powersaving-button'>SWITCH POWERSAVE</button>
+			<button id='temperature-reset'>RESET</button>
+		</section>
+	  	<section class='weather row'>
+	    	<form id='ajaxform'>
+	      		<p>City: </p><input type='text' id='city'><br/>
+	      		<p>Country: </p><input type='text' id='country'><br/>
+	      		<input type='submit' value='Submit'>
+	    	</form>
+	    	<p id='weather-update'></p>
+	  	</section>
+	</div>
+		
+	<footer>
+		<script type='text/javascript' src='src/Thermostat.js'></script>
+		<script src='jquery.js'></script>
+		<script src='src/ThermostatJquery.js'></script>
+	</footer>
 </body>
 
 </html>
