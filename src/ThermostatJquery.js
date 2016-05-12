@@ -45,4 +45,13 @@ $(document).ready(function() {
 		updatePower();
 	});
 
+	$("#ajaxform").submit(function(event){
+		event.preventDefault();
+		var city = $('#city').val();
+		var country = $('#country').val();
+		var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + country + '&appid=05a7a6a98e00af8041cff6d5035a03ae&units=metric'
+		$.get(url, function(data){
+			$('#jibberish').text(data.main.temp);
+		});
+	});
 });
