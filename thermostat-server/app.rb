@@ -1,18 +1,25 @@
 require 'sinatra/base'
+require './models/temperature'
+require 'json'
 
 class Thermostat < Sinatra::Base
   enable :sessions
 
   get '/' do
-
+    response['Access-Control-Allow-Origin'] = '*'
+    'hello'
   end
 
-  post '/temperature/:temperature' do
-    session[:temperature] = params[:temperature]
+  post '/temperature' do
+    response['Access-Control-Allow-Origin'] = '*'
+    request.body.rewind
+    temperature = JSON.parse(request.body.read)
+    Temperature.set_temp(temperature)
   end
 
   get '/temperature' do
-    (session[:temperature] || 20).to_s
+    response['Access-Control-Allow-Origin'] = '*'
+    Temperature.get_temp.to_json
   end
 
   # start the server if ruby file executed directly
