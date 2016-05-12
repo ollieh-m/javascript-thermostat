@@ -15,15 +15,7 @@ $(document).ready(function() {
 	};
 
 	function updateDisplay() {
-		if (thermostat.displayStatus() === 'low-usage') {
-			$(".display").css( {"background-color": "green"} );
-		};
-		if (thermostat.displayStatus() === 'med-usage') {
-			$(".display").css( {"background-color": "orange"} );
-		};
-		if (thermostat.displayStatus() === 'high-usage') {
-			$(".display").css( {"background-color": "red"} );
-		};
+		$("#display").attr('class', thermostat.displayStatus());
 	};
 
 	updateTemp();

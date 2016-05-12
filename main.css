@@ -1,0 +1,11 @@
+.low-usage {
+	background-color: green;
+}
+
+.med-usage {
+	background-color: orange;
+}
+
+.high-usage {
+	background-color: red;
+}
