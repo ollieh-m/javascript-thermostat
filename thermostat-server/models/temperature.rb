@@ -5,7 +5,7 @@ class Temperature
 	end
 
 	def self.get_temp
-		@@temperature ||= 20
+		@@temperature ||= nil
 		@@temperature
 	end
 
