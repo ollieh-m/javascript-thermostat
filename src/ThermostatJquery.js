@@ -26,12 +26,25 @@ $(document).ready(function() {
 	};
 
 	function updateServer(){
-		$.post(('http://localhost:4567/temperature/' + thermostat.temperature))
+		$.ajax({
+			type: 'POST',
+			url: 'http://localhost:4567/temperature',
+			dataType: 'json',
+			contentType: 'application/json',
+			data: JSON.stringify({temperature:thermostat.temperature})
+		})
 	}
 
-	$.get('http://localhost:4567/temperature', function(data){
-		thermostat.temperature = Number(data)
-	});
+	$.ajax({
+			type: 'get',
+			url: 'http://localhost:4567/temperature',
+			success: function(data){
+				temp = JSON.parse(data)
+				if (temp !== null) {
+					thermostat.temperature = temp.temperature
+				}
+			}
+		});
 
 	updateTemp();
 	updatePower();
