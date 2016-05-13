@@ -30,7 +30,7 @@ $(document).ready(function() {
 			type: 'POST',
 			url: 'http://localhost:4567/temperature',
 			dataType: 'json',
-			contentType: 'application/json',
+			contentType: 'application/json; charset=utf-8',
 			crossDomain: true,
 			data: JSON.stringify({ temperature: thermostat.temperature })
 		})

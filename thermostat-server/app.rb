@@ -18,7 +18,8 @@ class Thermostat < Sinatra::Base
     headers 'Access-Control-Allow-Origin' => '*'
     ruby_hash = JSON.parse(request.body.read)
     Temperature.set_temp(ruby_hash)
-    p ruby_hash.class
+    #random thing here so Temperature.set_temp isn't returned fixes 'no conversion from array to string' server error!
+    ruby_hash.class
   end
 
   get '/temperature' do
