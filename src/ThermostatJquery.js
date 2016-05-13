@@ -40,16 +40,15 @@ $(document).ready(function() {
 			type: 'GET',
 			url: 'http://localhost:4567/temperature',
 			success: function(data){
-				temp = JSON.parse(data)
-				if (temp !== null) {
+				temp = JSON.parse(data);
+				if (temp.temperature !== null) {
 					thermostat.temperature = temp.temperature
-				}
+				};
+				updateTemp();
+				updatePower();
+				updateDisplay();
 			}
 		});
-
-	updateTemp();
-	updatePower();
-	updateDisplay();
 
 	$("#temperature-up").click(function() {
 		thermostat.upButton();
