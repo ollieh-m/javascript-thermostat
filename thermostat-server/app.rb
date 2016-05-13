@@ -6,24 +6,21 @@ class Thermostat < Sinatra::Base
   
   enable :sessions
 
-  before do
-    headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept'
-    headers['Access-Control-Allow-Credentials'] = 'true'
-
-    if request.request_method == 'OPTIONS'
-      headers["Access-Control-Allow-Methods"] = "POST, GET"
-      halt 200
-    end
+  options "*" do
+    response.headers["Allow"] = "HEAD,GET,PUT,POST,DELETE,OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept"
+    200
   end
 
   post '/temperature' do
+    headers 'Access-Control-Allow-Origin' => '*'
+    headers['Access-Control-Allow-Methods'] = "POST"
     ruby_hash = JSON.parse(request.body.read)
     Temperature.set_temp(ruby_hash)
   end
 
   get '/temperature' do
-    content_type :json
+    headers 'Access-Control-Allow-Origin' => '*'
     Temperature.get_temp.to_json
   end
 

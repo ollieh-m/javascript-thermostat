@@ -31,12 +31,13 @@ $(document).ready(function() {
 			url: 'http://localhost:4567/temperature',
 			dataType: 'json',
 			contentType: 'application/json',
-			data: JSON.stringify({temperature:thermostat.temperature})
+			crossDomain: true,
+			data: JSON.stringify({ temperature: thermostat.temperature })
 		})
 	}
 
 	$.ajax({
-			type: 'get',
+			type: 'GET',
 			url: 'http://localhost:4567/temperature',
 			success: function(data){
 				temp = JSON.parse(data)
